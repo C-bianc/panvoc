@@ -53,4 +53,5 @@ run `npm start` or `node app.js` to run the app
 # Cite our work
 
 Authors : Antonella Fadda, Arnaud Vitali, Bianca Ciobanica
+
 Year : 2024
