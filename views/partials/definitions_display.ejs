@@ -1,0 +1,30 @@
+<!-- definitions is a dict containing word, definitions and examples from the db and only words of the chosen level-->
+<script>const gameSet = <%- JSON.stringify(wordsToGuess) %></script>
+<div class="card-body w-75 m-auto justify-content-center mb-5 fw-light">
+    <!-- our definition is displayed here with js-->
+    <br>
+</div>
+<br>
+<div class="input-group w-50 justify-content-center m-auto mb-5">
+    <!-- score -->
+    <span class="input-group-text border-black" id="addon-wrapping">
+            <b class="p-2 s" id="score">Score</b>
+        </span>
+    <!-- word input -->
+    <input
+            type="text"
+            required
+            autofocus
+            class="form-control border-black"
+            placeholder="Write your guess word"
+            aria-label="Write your guess word"
+            aria-describedby="addon-wrapping"
+            id="userGuess"
+    >
+    <!-- Submit button (type is button because we are not sending data to server) -->
+    <button type="button" class="btn btn-secondary" id="submitGuess">Submit</button>
+    <div class="invalid-feedback" id="red-message">
+        Wrong word :( Try again.
+    </div>
+    <div class="valid-feedback pt-1" id="green-message"></div>
+</div>

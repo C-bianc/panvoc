@@ -1,0 +1,11 @@
+<div class="container text-center text-muted">
+    <p>© Antonella Fadda, Arnaud Vitali, Bianca Ciobanica</p>
+    <!-- Button trigger delete acc-->
+    <% if (username) { %>
+        <form action="/delete" method="POST">
+            <button type="submit" class="custom-tooltip" id="deleteAccount">Delete my account
+                <span class="custom-tooltiptext" id="deleteConfirmation">Are you sure?</span>
+            </button>
+        </form>
+    <% } %>
+</div>

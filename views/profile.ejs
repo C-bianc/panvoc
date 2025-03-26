@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/custom.css"/>
+</head>
+<body>
+<header><%- include("./partials/header.ejs") %></header>
+
+<main class="min-vh-100">
+    <!-- display message if account edited succesfully -->
+    <% if (successUserEdit) { %>
+        <div class="container mt-4 d-flex justify-content-center">
+            <p class="custom-success text-center px-5" id="successMessage"
+               role="alert"> <%= successUserEdit %>
+                <span class="close-button-success">&times;</span>
+            </p>
+            <br>
+        </div>
+    <% } %>
+    <!-- EDIT FORM -->
+    <% if (showEditForm) { %> <% if (errorMessage) { %>
+        <div class="custom-alert" id="alertMessage">
+            <span class="close-button-alert" role="alert">&times;</span>
+            <% errorMessage.forEach(message => { %>
+                <p><%= message %></p>
+            <% }) %>
+        </div>
+    <% } %> <%- include('redirects/edit_profile') %>
+    <% } else { %>
+        <div class="container-fluid">
+            <div class="mx-2 row">
+                <div class="mt-4 col-md-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="card-title text-center mb-5">Welcome on your dashboard,
+                                <%= username %>
+                            </h2>
+                            <h2 class="text-center">Your overall performance</h2>
+                            <table class="table rounded text-center m-auto w-25 align-items-center">
+                                <thead>
+                                <tr>
+                                    <% userStats.forEach((info) => { %>
+                                        <!-- access the level property -->
+                                        <th class="w-25 bg-secondary-subtle border-black"
+                                            scope="col"><%= info.level %></th>
+                                    <% }) %>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <% userStats.forEach((info) => { %>
+                                        <!-- access the score property -->
+                                        <td class="border-end"><%= info.score %></td>
+                                    <% }) %>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4 col-md-4">
+                    <div class="row">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Profile Information</h5>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Email: <%= user.email %></li>
+                                    <li class="list-group-item">
+                                        Account Created: <%= user.createdAt %>
+                                    </li>
+                                    <li class="list-group-item">
+                                        Time Since Creation: <%= timeSinceCreation %>
+                                    </li>
+                                    <li class="list-group-item">
+                                        Last Login: <%= user.lastLogin || 'N/A' %>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="card-footer text-center">
+                                <form action="/profile?edit-acc=true" method="POST">
+                                    <input
+                                            type="submit"
+                                            aria-label="Edit your account"
+                                            class="btn text-decoration-underline"
+                                            name="edit-acc"
+                                            value="Edit account"
+                                    />
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mt-2 card">
+                            <div class="card-body">
+                                <h5 class="card-title">Upload your own words</h5>
+                                <form
+                                        action="/profile/upload"
+                                        method="POST"
+                                        enctype="multipart/form-data">
+                                    <div class="mb-3">
+                                        <label for="csvFile" class="form-label">Choose a .txt or a .csv file:</label>
+                                        <p class="text-danger">The format <u>must</u> be one word<b>,</b>definition
+                                                               per
+                                                               line</p>
+                                        <input
+                                                type="file"
+                                                class="form-control"
+                                                id="csvFile"
+                                                name="csvFile"
+                                                accept=".txt, .csv"
+                                                required
+                                        />
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Upload</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <% } %>
+</main>
+<footer class="fixed-bottom py-3 divToClose mt-4 our-gradient">
+    <%- include("./partials/footer.ejs") %>
+</footer>
+<script src="/javascripts/closeMessage.js"></script>
+</body>
+</html>

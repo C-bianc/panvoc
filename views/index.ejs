@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/custom.css">
+
+</head>
+<body>
+<!-- Header -->
+<header class="sticky-top">
+    <%- include("./partials/header.ejs") %>
+</header>
+
+<!-- Body -->
+<main class="min-vh-100">
+    <div class="container">
+        <div class="row justify-content-around pt-3 mx-2">
+
+            <!-- Welcome Info -->
+            <div class="col-9 m-auto text-center pt-5 border">
+                <h1 class="fw-semibold">Welcome to Panvoc !</h1>
+                <div class="container mt-2 mb-5">
+                    <h4>The game that will help you <b>learn</b> your English vocabulary having FUN!</h4>
+                </div>
+                <a href="/play">
+                    <button class="btn our-button">Start to Play !</button>
+                </a>
+            </div>
+
+
+            <!-- Global rankings -->
+            <div class="col-3 align-self-end">
+                <h3 class="text-center">Global Rankings</h3>
+                <table class="table table-dark table-striped" id="table-text-GR">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Score</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% topPlayers.forEach((player, index) => { %>
+                        <tr>
+                            <td><%= index + 1 %></td> <!-- Adding 1 to index to start from 1 for rank -->
+                            <td><%= player._id %></td>
+                            <td><%= player.totalScore %></td>
+                        </tr>
+                    <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="fixed-bottom py-3 mt-2 our-gradient">
+    <%- include("./partials/footer.ejs") %>
+</footer>
+</body>
+</html>

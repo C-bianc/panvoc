@@ -1,0 +1,25 @@
+<% if (chosenLevel !== 'ownList') { %>
+    <h3 class="m-3">You have selected the <u><%= chosenLevel %></u> level</h3>
+    <div class="container p-5 mt-5 mb-5 text-center bg-dark-subtle fs-5 w-75">
+        <p>You will have <b>3 minutes</b> for guessing the word according to the definition displayed.</p>
+        <br>
+        <p>Some examples will be given to help you guess.</p>
+        <br>
+        <p>&#9888; Only the
+            <b><a href="https://dictionary.cambridge.org/dictionary/english/lemma">canonical form</a></b>
+           will award you points, so be careful!</p>
+    </div>
+    <a href="/play/launch-game?level=<%= chosenLevel %>&start=true">
+        <button type="button" class="btn our-button mb-5 my-3" id="start-btn">Start</button>
+    </a>
+
+<% } else { %>
+    <h3 class="m-3">You have selected your personal list of words</h3>
+    <div class="container p-5 mt-5 mb-5 text-center bg-dark-subtle fs-5 w-75">
+        <p>You will have <b>3 minutes</b> for guessing the word according to the definition displayed.</p>
+        <br>
+    </div>
+    <a href="/play/launch-game?level=ownList&start=true">
+        <button type="button" class="btn our-button mb-5 my-3" id="start-btn">Start</button>
+    </a>
+<% } %>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/custom.css'/>
+
+</head>
+<body>
+<header class="sticky-top">
+    <%- include("./partials/header.ejs") %>
+</header>
+
+<!-- Body -->
+<main class="min-vh-100">
+    <% if (!username) { %>
+        <!-- if user is not logged in -->
+        <script src="/javascripts/redirectToLogin.js"></script>
+    <% } %>
+    <% if (thankMessage) { %>
+        <!-- Display Thank You Message -->
+            <div class="container mt-4 d-flex justify-content-center">
+                <div class="col-md-6 custom-success text-center" id="successMessage" role="alert">
+                    <p><%= thankMessage %>
+                        <span class="close-button-success">&times;</span>
+                    </p>
+                </div>
+            </div>
+    <% } %>
+
+    <% if (errorMessage) { %>
+        <!-- Display error Message -->
+            <div class="container mt-4 d-flex justify-content-center">
+                <div class="custom-alert" id="alertMessage">
+                    <p><%= errorMessage %>
+                        <span class="close-button-alert" role="alert">&times;</span>
+                    </p>
+                </div>
+            </div>
+    <% } %>
+
+    <h2 class="text-center m-5">Fill in this form to send us a feedback!</h2>
+        <!-- Suggestion Form -->
+    <form id="suggestionForm"
+          action="/suggest/submitFeedback"
+          class="container mt-4 d-flex justify-content-center"
+          method="POST"
+          autocomplete="off">
+        <div class="col-md-6">
+            <!-- label -->
+            <label for="suggestion">Write your suggestion here:</label>
+            <div class="form-floating">
+                    <textarea class="form-control"
+                              name="suggestion"
+                              placeholder="Write your suggestion here"
+                              maxlength="300"
+                              id="floatingTextarea"
+                              required style="height: 200px"></textarea>
+                <label for="floatingTextarea">max 300 characters</label>
+            </div>
+            <br>
+            <!-- submit -->
+            <button type="submit" class="btn our-button">Submit</button>
+        </div>
+    </form>
+    <form id="suggestionForm"
+          action="/suggest/submitWord"
+          class="container mt-4 d-flex justify-content-center"
+          method="POST"
+          autocomplete="off">
+        <div class="col-md-6">
+            <!-- label -->
+            <h3 class="text-center m-3">Or add a word to our dictionary!</h3> 
+            <label for="suggestion">Submit your word here:</label>
+            <div class="form-floating">
+                <input type="text" name="suggest_word" required class="form-control">
+            </div>
+            <br>
+            <!-- submit -->
+            <button type="submit" class="btn our-button">Submit</button>
+        </div>
+    </form>
+</main>
+<!-- Footer -->
+<footer class="fixed-bottom py-3 mt-4 our-gradient">
+    <%- include("./partials/footer.ejs") %>
+</footer>
+<script src="/javascripts/closeMessage.js"></script>
+</body>
+</html>

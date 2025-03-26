@@ -1,0 +1,41 @@
+<nav class="navbar our-gradient sticky-top mb-3" role="navigation">
+    <!-- Brand on the left -->
+    <div class="d-flex ps-3">
+        <a class="navbar-brand ps-5 h1" href="/">Panvoc</a>
+    </div>
+    <!-- Centered Navigation -->
+    <ul class="nav nav-underline">
+        <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/play">Play</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/suggest">Suggest</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/about">About</a>
+        </li>
+    </ul>
+
+    <!-- Signup Button on the right -->
+    <div class="p-3 d-inline text-center">
+        <% if (username) { %>
+            <span class="text-lg-center fw-medium fs-5">Hello </span>
+            <div class="custom-dropdown">
+                <button type="button" id="userMenuBtn" class="btn our-button"> <%= username %></button>
+                <div class="drop-content">
+                    <a href="/profile">Profile</a>
+                    <a href="/logout">Log out</a>
+                </div>
+            </div>
+
+        <% } else { %>
+            <a href="/login">
+                <button type="button" class="btn our-button">Sign-up</button>
+            </a>
+        <% } %>
+    </div>
+</nav>
+<script src="/javascripts/activeNavbar.js"></script>

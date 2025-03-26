@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/custom.css'/>
+
+</head>
+<body>
+<header class="sticky-top">
+    <%- include("./partials/header.ejs") %>
+</header>
+<!-- Body -->
+<main class="min-vh-100">
+    <!-- NEW ACC FORM -->
+    <% if  (showRegistrationForm) { %>
+        <% if (errorMessage) { %>
+            <div class="custom-alert" id="alertMessage">
+                <span class="close-button-alert" role="alert">&times;</span>
+                <% errorMessage.forEach(message => { %>
+                    <p><%= message %></p>
+                <% }) %>
+            </div>
+        <% } %>
+        <%- include('redirects/new_user') %>
+    <!-- LOGIN FORM -->
+    <% } else { %>
+    <!-- if invalid information -->
+        <% if (errorMessage) { %>
+            <div class="custom-alert" id="alertMessage">
+                <p><%= errorMessage %>
+                    <span class="close-button-alert" role="alert">&times;</span>
+                </p>
+            </div>
+        <% } %>
+    <!-- display message if account created succesfully -->
+        <% if (successUserCreation) { %>
+            <div class="container mt-4 d-flex justify-content-center">
+                <p class="custom-success text-center px-5" id="successMessage"
+                   role="alert"> <%= successUserCreation %>
+                    <span class="close-button-success">&times;</span>
+                </p>
+                <br>
+            </div>
+        <% } %>
+    <!-- login form -->
+        <div class="container position-relative d-flex flex-column align-items-center">
+            <h2 class="text-center m-5">
+                Log in to your account in order to <span class="text-info-emphasis">play</span>
+            </h2>
+            <form action="/login/connect" method="POST" class="w-auto">
+                <!-- Username -->
+                <div class="form-floating mb-3">
+                    <input type="text" name="username" required class="form-control border-black" id="floatingUname"
+                           placeholder="Your username">
+                    <label for="floatingUname">Username</label>
+                </div>
+
+                <!-- Password -->
+                <div class="form-floating mb-5">
+                    <input type="password" name="password" required class="form-control border-black"
+                           id="floatingPassword"
+                           placeholder="Password">
+                    <label for="floatingPassword">Password</label>
+                </div>
+
+                <!-- connect button -->
+                <div class="text-center">
+                    <button type="submit" class="btn our-button">Connect</button>
+                </div>
+            </form>
+
+            <p class="mt-3 text-enter">Not registered yet?</p>
+            <form action="/login?new-acc=true" method="POST">
+                <input type="submit" aria-label="Create a new account" class="btn text-decoration-underline"
+                       name="new-acc"
+                       value="Create new account">
+            </form>
+        </div>
+    <% } %>
+</main>
+
+<!-- Footer -->
+<footer class="fixed-bottom py-3 mt-auto our-gradient">
+    <%- include("./partials/footer.ejs") %>
+</footer>
+<script src="/javascripts/closeMessage.js"></script>
+</body>
+</html>

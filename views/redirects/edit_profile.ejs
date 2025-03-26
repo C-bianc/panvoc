@@ -1,0 +1,72 @@
+<h2 class="text-center m-5">Fill in the desired fields to edit your account</h2>
+<!-- client-side form validation to reduce server load and improve responsiveness -->
+<div class="container d-flex flex-column align-items-center mb-5">
+  <form
+    action="/profile/edit-account"
+    method="POST"
+    class="w-50 needs-validation"
+  >
+    <!-- novalidate to override browser default validation -->
+
+    <!-- Email -->
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        name="new_email"
+        required
+        class="form-control border-black"
+        id="floatingEmail"
+        placeholder="johndoe@example.com"
+      />
+      <label for="floatingEmail">Email</label>
+    </div>
+
+    <!-- Password -->
+    <div class="form-floating mb-3">
+      <input
+        type="password"
+        name="new_password"
+        required
+        class="form-control border-black"
+        id="floatingPassword"
+        placeholder="Password"
+      />
+      <label for="floatingPassword">Password</label>
+      <!-- Password requirements -->
+      <div class="invalid-feedback">
+        Password does not meet the requirements. :(
+      </div>
+      <div class="valid-feedback">Looks good!</div>
+      <div id="passwordHelpBlock" class="form-text">
+        Your password must be at least 8 characters long, one capitalized
+        letter, one number, and a special sign.
+      </div>
+    </div>
+
+    <!-- Confirmation password -->
+    <div class="form-floating mb-5">
+      <input
+        type="password"
+        required
+        class="form-control border-black"
+        id="floatingPasswordConfirm"
+        placeholder="Password confirmation"
+      />
+      <label for="floatingPasswordConfirm">New password confirmation</label>
+      <div class="invalid-feedback">Passwords do not match. :(</div>
+      <div class="valid-feedback">Looks good!</div>
+      <div id="passwordConfirmHelpBlock" class="form-text">
+        Should match the chosen password
+      </div>
+    </div>
+
+    <!-- submit button -->
+    <div class="text-center">
+      <button type="submit" id="submit-btn" class="btn our-button w-25">
+        Submit
+      </button>
+    </div>
+  </form>
+</div>
+<script src="/javascripts/passwordMatch.js"></script>
+<script type="module" src="/javascripts/passwordValidation.js"></script>

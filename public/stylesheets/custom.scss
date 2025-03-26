@@ -1,0 +1,340 @@
+// override default variables
+
+//global settings
+$font-family-base: system-ui; // default system font
+$body-bg: #eeeeee;
+
+// navbar styling
+$nav-link-color: black;
+$nav-link-hover-color: yellow;
+$navbar-light-brand-hover-color: #88ec82;
+$nav-link-font-size: 19px;
+$navbar-brand-font-size: 1.6rem;
+
+
+// include all of bootstrap
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+// custom scss here
+
+//navbar hover
+.navbar-brand,
+.nav-link {
+  transition: font-size 0.3s ease;
+}
+
+.navbar-brand:hover {
+  font-size: 2rem
+}
+
+.nav-link:hover {
+  font-size: 1.4rem; /* Increase the font size on hover (adjust as needed) */
+}
+
+.nav-link.active {
+  border-bottom: none;
+  font-size: 1.4rem;
+}
+
+.our-gradient {
+  background-image: linear-gradient(to right, #ffff00, #40e0d0);
+}
+
+/* The active highliting in the navbar*/
+.nav-link.active {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+// button
+.our-button {
+  background-color: #212529;
+  color: #40e0d0;
+  font-weight: 600;
+  transition: font-size 0.3s ease;
+}
+
+.our-button:hover {
+  font-weight: 600;
+  color: #ffff00;
+  font-size: 20px;
+}
+
+// custom alert box
+.custom-alert, .custom-success {
+  margin-top: 20px;
+  padding: 20px;
+  font-weight: 500;
+  color: white;
+  margin-bottom: 15px;
+  margin-right: 25%;
+  margin-left: 25%;
+}
+
+.custom-alert {
+  background-color: #f44336;
+}
+
+.custom-success {
+  background-color: #157347;
+}
+
+// curtom alerts
+.close-button-alert,
+.close-button-success {
+  margin-left: 15px;
+  font-weight: bold;
+  float: right;
+  font-size: 24px;
+  line-height: 20px;
+  cursor: pointer;
+}
+
+.close-button-alert {
+  color: darkred;
+}
+
+.close-button-success {
+  color: #88ec82;
+}
+
+.close-button-alert:hover,
+.close-button-success:hover {
+  color: white;
+}
+
+// alert link
+
+/* Tooltip text */
+.custom-tooltip {
+  position: relative;
+  display: inline-block;
+  border: transparent;
+  background-color: transparent;
+  text-decoration-line: underline;
+}
+
+/* Tooltip text */
+.custom-tooltip .custom-tooltiptext {
+  visibility: hidden;
+  width: 100%;
+  font-weight: bold;
+  background-color: #b30000;
+  color: #fff;
+  text-align: center;
+  padding: 2px;
+  border-radius: 6px;
+  left: 105%;
+
+  /* Position the custom-tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+/* Show the custom-tooltip text when you mouse over the tooltip container */
+.custom-tooltip:hover .custom-tooltiptext {
+  visibility: visible;
+}
+
+.custom-tooltip .custom-tooltiptext::after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  right: 100%; /* To the left of the tooltip */
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent #b30000 transparent transparent;
+}
+
+
+/* The container <div> - needed to position the dropdown content */
+.custom-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.drop-content {
+  display: none;
+  position: absolute;
+  background-color: #212529;
+  min-width: 100%;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 8px;
+}
+
+/* Links inside the dropdown */
+.drop-content a {
+  color: #ffff00;
+  padding: 15px 15px;
+  text-decoration: #0dcaf0;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.drop-content a:hover {
+  background-color: #ddd;
+  border-radius: 8px;
+  color: black;
+  font-weight: bold;
+}
+
+/* Show the dropdown menu on hover */
+.custom-dropdown:hover .drop-content {
+  display: block;
+}
+
+.custom-dropdown:hover .our-button {
+  background-color: transparent;
+  font-weight: 600;
+  color: #ffff00;
+  font-size: 20px;
+}
+
+// choose cefr lvl
+.chooseLvlLink {
+  text-align: center;
+  background-color: black;
+}
+
+#col1 {
+  border-right: 2px solid #18c9ac;
+  height: 650px;
+}
+
+
+.custom-img {
+  border-radius: 50%;
+  width: 120px; /* Adjust the width as needed */
+  height: 120px; /* Adjust the height as needed */
+  object-fit: cover;
+  transition: 0.3s ease-in-out;
+}
+
+.custom-img:hover {
+  width: 150px;
+  height: 150px;
+}
+
+/* Add classes for different level colors */
+.color-green {
+  color: #88ec82;
+}
+
+.color-blue {
+  color: #40e0d0;
+}
+
+.color-purple {
+  color: #d63384;
+}
+
+#start-btn {
+  font-size: large;
+  color: #88ec82;
+  font-weight: 600;
+  transition: font-size 0.3s ease;
+}
+
+#start-btn:hover {
+  font-size: larger;
+}
+
+#countdown {
+  font-size: 50px;
+}
+
+#go-text {
+  display: none;
+  font-size: 40px;
+  animation-name: widen;
+  animation-duration: 0.3s; /* Animation duration */
+  animation-fill-mode: forwards; /* Keep the final state of animation */
+  opacity: 0;
+}
+
+@keyframes widen {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 45px;
+    opacity: 1;
+  }
+}
+
+#afterCountdown {
+  display: none;
+}
+
+.progress-vertical {
+  height: 300px; /* Set the height for the vertical progress bar */
+  width: 20px; /* Set the width for the vertical progress bar */
+  border: 1px solid #ccc;
+  overflow: hidden;
+  background-color: white;
+  border-radius: 10px;
+}
+
+#vertical-bar {
+  background-color: #49e1c6;
+  border-radius: 10px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  animation: emptyProgress 180s linear forwards;
+  transform-origin: bottom; /* Set the transform origin to top */
+  transform: scaleY(0); /* Initial scale to make it empty */
+}
+
+@keyframes emptyProgress {
+  0% {
+    transform: scaleY(1); /* Start with full height */
+  }
+  100% {
+    transform: scaleY(0); /* End with no height (empty from top down) */
+  }
+}
+
+#gameTitle {
+  margin-top: -60px;
+}
+
+.table#table-text-GR tbody tr td {
+  color: #18c9ac;
+}
+
+#memory-game, #final-game  {
+  display: none;
+}
+
+
+.progress-horizontal {
+  width: 50%;
+  height: 20px;
+  background-color: white;
+  margin: auto;
+  border-radius: 5px;
+  overflow: hidden; /* Ensure the progress bar clips overflow */
+}
+
+#horizontal-bar {
+  width: 100%; /* Set initial width to 100% */
+  height: 100%;
+  background-color: #40e0d0;
+  border-radius: 5px;
+  animation: decreaseWidth 30s linear forwards; /* Use an animation named decreaseWidth over 30 seconds */
+}
+
+@keyframes decreaseWidth {
+  from {
+    width: 100%; /* Starting width */
+  }
+  to {
+    width: 0%; /* Ending width */
+  }
+}

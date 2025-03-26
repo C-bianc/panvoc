@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/custom.css'/>
+    <script type="module" src="/javascripts/gameScripts/displayDefinitions.js"></script>
+
+</head>
+<body>
+<header class="sticky-top">
+    <%- include("./partials/header.ejs") %>
+</header>
+<!-- Body -->
+<main class="min-vh-100">
+    <% if (!username) { %>
+        <script type="module" src="/javascripts/redirectToLogin.js"></script>
+    <% } %>
+    <div class="row w-100">
+        <!-- CEFR bar -->
+        <div class="col-1 py-3 m-5">
+            <%- include('./partials/cefr_levels') %>
+        </div>
+
+        <!-- The game column -->
+        <div class="col w-100 mt-4 text-center align-self-center" id="game-column">
+            <% if (!gameIsOver) { %>
+                <% if (!chosenLevel) { %>
+                    <h3 class="m-3 align-self-center">Start a game by selecting the vocabulary set of your choice</h3>
+                <% } else { %>
+                    <% if (!startGame) { %>
+                        <!-- Introduction -->
+                        <%- include('./partials/gameIntro.ejs') %>
+
+                    <% } else { %>
+                        <!-- Game -->
+                            <% if (wordsToGuess.length === 0) { %>
+                                <div class="text-center align-self-center">
+                                    <h3>No words to display.<a href="/profile">Please add your list</a></h3>
+                                </div>
+                            <% } else { %>
+                        <!-- Countdown -->
+                            <div class="align-self-center fw-semibold" id="countdown"></div>
+                            <p class="text-center fw-semibold" id="go-text">Go!</p>
+
+                        <!-- Player has chosen level, started game and is now playing -->
+                            <div class="fw-semibold align-items-center" id="afterCountdown">
+                                <div class="container mb-3 my-2 text-end">
+                                    <a href="/play/quit">
+                                        <button type="button" class="btn our-button">Quit</button>
+                                    </a>
+                                </div>
+                                <!-- display definitions -->
+                                <div class="row">
+                                    <div class="col-12 ms-5 card w-75">
+                                        <h3 class="text-center mb-3" id="gameTitle">Guess the word</h3>
+                                        <%- include('./partials/definitions_display.ejs') %>
+                                    </div>
+                                    <!-- Right side -->
+                                    <div class="col-1 mx-auto align-self-start justify-content-center">
+                                        <!-- Quit button -->
+                                        <div class="w-auto position-fixed mb-4">
+                                            <h5>Time left</h5>
+                                            <div class="progress-vertical">
+                                                <div class="progress-bar progress-bar-animated" id="vertical-bar"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                <% }}} %>
+                <script src="/javascripts/gameScripts/startCountdown.js"></script>
+                <script type="module" src="/javascripts/gameScripts/gameProcess.js"></script>
+            <% } else { %>
+
+                <script>let bonusWords = <%- JSON.stringify(guessedWords) %></script>
+                <script>const currentScore = <%= score %></script>
+                <script> const currentLevel = <%= chosenLevel %> </script>
+                        <!-- Game over -->
+                <div class="container" id="game-over-body">
+                    <h1 class="mb-5">Game over!</h1>
+                    <h2 class="text-success">Your score is:
+                        <%= score %>
+                    </h2>
+                    <div class="container mt-5">
+                        <a href="/play/launch-game?level=<%= chosenLevel %>">
+                            <button name="send-score" type="submit" class="btn our-button">Play again
+                            </button>
+                        </a>
+                        <br><br>
+                        or continue with the
+                        <button id="memory-game-btn" type="button" class="btn our-button">
+                            memory game
+                        </button>
+                        to gain bonus points!
+                        <br><br>
+                        You will have 30 seconds at disposal.
+                    </div>
+                </div>
+
+                <div class="align-self-start text-center" id="memory-game">
+                    <div class="progress-horizontal mb-5 ">
+                        <div class="progress-bar progress-bar-animated" id="horizontal-bar"></div>
+                    </div>
+                    <h3 class="mb-5">Recall the guessed words in your previous game</h3>
+                    <div class="input-group w-25 m-auto">
+                                    <span class="input-group-text border-black" id="addon-wrapping">
+                                        <b class="p-2" id="score-memory">Score</b>
+                                    </span>
+                        <input type="text" class="form-control border-black"
+                               placeholder="Your answer"
+                               aria-label="Your answer" id="userRecall">
+                        <div class="invalid-feedback" id="red-message">
+                            Wrong word :( Try again.
+                        </div>
+                        <div class="valid-feedback pt-1" id="green-message"></div>
+                    </div>
+                </div>
+                <div class="align-items-center text-center" id="final-game">
+                    <h2>Congratulations !</h2>
+                    <br>
+                    <h3>These are the words you learned today:</h3>
+                    <span id="guessed-words"></span>
+                    <br>
+                    <br>
+                    <span class="m-4" id="bonus-points"></span>
+                    <span class="m-4" id="total-score"></span>
+                    <br>
+                    <a href="/play">
+                        <button name="end-game" type="submit" class="m-4 btn our-button">Play again
+                        </button>
+                    </a>
+                </div>
+
+                <script type="module" src="/javascripts/gameScripts/startMemoryGame.js"></script>
+            <% } %>
+        </div>
+    </div>
+</main>
+<!-- Footer -->
+<footer class="fixed-bottom py-3 mt-4 our-gradient">
+    <%- include("./partials/footer.ejs") %>
+</footer>
+<script src="/javascripts/activeNavbar.js"></script>
+<script src="/javascripts/gameScripts/preventAbortGame.js"></script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/custom.css'/>
+
+</head>
+<body>
+<header class="sticky-top">
+    <%- include("./partials/header.ejs") %>
+</header>
+
+<!-- Body -->
+<!-- About us text -->
+<main class="min-vh-100">
+    <div class="row w-100 m-auto text-center">
+        <div class="col-10 fs-5 pe-4" id="col1">
+            <h2 class="mx-3 fw-semibold">A Platform Built for...</h2>
+            <div class="container m-3 pt-4">
+                <h3 class="fw-semibold">Practicing your English Vocabulary!</h3>
+                <div class="text-center">
+                    Welcome to <span class="text-info">Panvoc</span> where learning 
+                        new words takes on the thrill of a game!
+                        The name "Panvoc" is derived from the Greek word pan
+                        meaning "all," combined with voc from "vocabulary." Our mission is to help you
+                        learn new words and practice 
+                        the ones you already know.
+                        Whether you speak English fluently or you are just starting to learn,
+                         <span class="text-info">Panvoc</span> is made for you!
+                  </div>
+            </div>
+            <div class="container m-3 pt-2">
+                <h3 class="fw-semibold">Playing!</h3>
+                <div> Before each session choose your English level between the six proposed suited to your level.
+                      You'll have three minutes to guess as many words as possible! The words used are written in
+                      British English form.
+                      When the three minutes are up if you want you can play a memory game by trying to remember all the
+                      words you guessed in the session you just played. Just to make sure you hit the nail.
+                </div>
+            </div>
+            <div class="container m-3 pt-2">
+                <h3 class="fw-semibold">Customizing your learning!</h3>
+                <div> If you want to learn a specific list of words, you can give us the file with the name and
+                      definition. The file must be in .txt format and must have for each line only one word and its
+                      definition.
+                      The structure of the line must be :
+                      <p>Your word,Your Definition</p>
+                      You can use only one list at a time. Be careful! If you upload a new list of words, the old one
+                      will be eliminated.
+                </div>
+            </div>
+            <a href="/play">
+                <button class="btn our-button">Get Started</button>
+            </a>
+        </div>
+<!-- Our Photos -->
+        <div class="col-2 align-self-start text-center" id="ourPics">
+            <h2 class="mx-3 fw-semibold">By... </h2>
+            <div class="text-start fw-semibold mb-2 pt-4">
+                <p class="ps-4">Antonella</p>
+                <img src="/images/Anto.jpg" class="rounded-circle custom-img" alt="Antonella">
+            </div>
+            <div class="text-end fw-semibold mb-2 pe-1">
+                <p class="pe-4">Arnaud</p>
+                <img src="/images/Arnaud.jpg" class="rounded-circle custom-img" alt="Arnaud">
+            </div>
+            <div class="text-start fw-semibold mb-2">
+                <p class="ps-4">Bianca</p>
+                <img src="/images/Bianca.jpg" class="rounded-circle custom-img" alt="Bianca">
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<!-- Footer -->
+<footer class="fixed-bottom py-3 mt-4 our-gradient">
+    <%- include("./partials/footer.ejs") %>
+</footer>
+<script src="/javascripts/activeNavbar.js"></script>
+</body>
+</html>
